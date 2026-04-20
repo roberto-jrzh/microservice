@@ -24,9 +24,6 @@ async function uploadFile() {
 
         const uploadResponse = await fetch(uploadURL, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
             body: file
         });
 
