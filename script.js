@@ -11,7 +11,7 @@ async function uploadFile() {
     try {
         status.innerText = "Requesting upload URL...";
 
-        const response = await fetch("https://injfdl15bj.execute-api.us-east-1.amazonaws.com/upload-url");
+        const response = await fetch("https://injfdl15bj.execute-api.us-east-1.amazonaws.com/dev/upload-url");
 
         if (!response.ok) {
             throw new Error(`Failed to get upload URL: ${response.status}`);
