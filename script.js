@@ -18,7 +18,7 @@ async function uploadFile() {
         }
 
         const data = await response.json();
-        const uploadURL = data.uploadURL;
+        const uploadURL = data.uploadURl;
 
         status.innerText = "Uploading file to S3...";
 
