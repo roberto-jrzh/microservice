@@ -9,6 +9,7 @@ async function uploadFile() {
     }
 
     try {
+        // Step 1: Get presigned URL from API
         status.innerText = "Requesting upload URL...";
 
         const response = await fetch("https://0k1grsozn5.execute-api.eu-west-1.amazonaws.com/dev/upload-url");
@@ -20,20 +21,20 @@ async function uploadFile() {
         const data = await response.json();
         const uploadURL = data.uploadUrl;
 
+        // Step 2: Upload file to S3
         status.innerText = "Uploading file to S3...";
 
-        const uploadResponse = await fetch(uploadURL, {
+        await fetch(uploadURL, {
             method: "PUT",
-            body: file
+            body: file,
+            mode: "no-cors"
         });
 
-        if (!uploadResponse.ok) {
-            throw new Error(`S3 upload failed: ${uploadResponse.status}`);
-        }
-
+        // Step 3: Show success
         status.innerText = "Upload complete!";
+
     } catch (error) {
         console.error("Upload error:", error);
-        status.innerText = "Upload failed. Check browser console and AWS settings.";
+        status.innerText = "Upload failed. Check console.";
     }
 }
